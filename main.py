@@ -1,5 +1,5 @@
 import typer
-from core import parser, executor, explainer
+from core import parser, executor
 
 app = typer.Typer()
 
@@ -16,11 +16,9 @@ def run(
     Translates a natural language command into a shell command, explains it,
     and optionally executes it.
     """
-    # Step 1: Translate the query to a shell command
-    command = parser.translate(query)
+    # Step 1: Translate the query to a shell command with an explanation
+    command, explanation = parser.translate(query)
 
-    # Step 2: Explain what the command does
-    explanation = explainer.explain(command)
     typer.echo(f"🔍 Explanation: {explanation}")
     typer.echo(f"💻 Command: {command}")
 
